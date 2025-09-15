@@ -1,0 +1,2531 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Driver - Premium Daikou Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --off-black: #121212;
+            --dark-gray: #1e1e1e;
+            --gold: #d4af37;
+            --light-gold: #f1e5ac;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --medium-gray: #888888;
+            --error-red: #e74c3c;
+            --success-green: #2ecc71;
+        }
+        
+
+        
+                /* Stats Section Styles */
+        .stats-section {
+            padding: 60px 20px;
+            background: linear-gradient(to bottom, var(--dark-gray), var(--off-black));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stats-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--medium-gray);
+            margin-bottom: 50px;
+            font-size: 1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .stat-source {
+            font-size: 0.75rem;
+            color: var(--medium-gray);
+        }
+        
+        .local-stats {
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .local-stats h3 {
+            text-align: center;
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .stat-cta {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--off-black);
+            color: var(--white);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--dark-gray);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            position: relative;
+        }
+        
+        .logo-car {
+            position: absolute;
+            width: 24px;
+            height: 12px;
+            background: var(--gold);
+            top: 18px;
+            left: 8px;
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .logo-wings {
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold) 80%, transparent 100%);
+            top: 14px;
+            left: 5px;
+            border-radius: 50%;
+        }
+        
+        .logo-wings:after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            background: linear-gradient(90deg, transparent 0%, var(--gold) 20%, var(--gold) 80%, transparent 100%);
+            top: 8px;
+            left: 0;
+            border-radius: 50%;
+        }
+        
+        .logo-text {
+            font-weight: 700;
+            font-size: 20px;
+            background: linear-gradient(to right, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .profile-icon {
+            background-color: var(--gold);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--off-black);
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            padding-bottom: 80px; /* Space for fixed nav */
+        }
+        
+        .section {
+            display: none;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* Founder Angel Badge */
+        .founder-badge {
+            display: inline-block;
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .angel-wings {
+            position: relative;
+            width: 80px;
+            height: 60px;
+            margin: 0 auto;
+        }
+        
+        .wing {
+            position: absolute;
+            width: 30px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), var(--light-gold));
+            border-radius: 50% 50% 0 0;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px var(--gold));
+        }
+        
+        .wing-left {
+            left: 0;
+            transform: rotate(-10deg);
+            animation: flapLeft 3s infinite ease-in-out;
+        }
+        
+        .wing-right {
+            right: 0;
+            transform: rotate(10deg) scaleX(-1);
+            animation: flapRight 3s infinite ease-in-out;
+        }
+        
+        @keyframes flapLeft {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(-20deg); }
+        }
+        
+        @keyframes flapRight {
+            0%, 100% { transform: rotate(10deg) scaleX(-1); }
+            50% { transform: rotate(20deg) scaleX(-1); }
+        }
+        
+        .badge-center {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--off-black);
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 0 15px var(--gold);
+        }
+        
+        .founder-badge-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        /* Service Notice */
+        .service-notice {
+            background-color: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .notice-title {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .notice-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* Cost Comparison */
+        .cost-comparison {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            gap: 15px;
+        }
+        
+        .cost-card {
+            flex: 1;
+            background-color: var(--dark-gray);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+        
+        .cost-card.fine {
+            border-color: var(--error-red);
+        }
+        
+        .cost-card.service {
+            border-color: var(--success-green);
+        }
+        
+        .cost-amount {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .cost-card.fine .cost-amount {
+            color: var(--error-red);
+        }
+        
+        .cost-card.service .cost-amount {
+            color: var(--success-green);
+        }
+        
+        .cost-label {
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+        
+        /* Ride Options */
+        .ride-options {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .ride-options::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .ride-option {
+            min-width: 100px;
+            background-color: var(--dark-gray);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+        }
+        
+        .ride-option.available {
+            opacity: 1;
+            cursor: pointer;
+        }
+        
+        .ride-option.active {
+            border-color: var(--gold);
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        .ride-icon {
+            font-size: 24px;
+            color: var(--gold);
+        }
+        
+        .ride-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .ride-price {
+            font-size: 12px;
+            color: var(--medium-gray);
+        }
+        
+        .coming-soon {
+            font-size: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+        
+        /* Booking Panel */
+        .booking-panel {
+            background-color: var(--dark-gray);
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
+        }
+        
+        .location-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12px 15px;
+            border-radius: 10px;
+        }
+        
+        .input-icon {
+            color: var(--gold);
+            font-size: 18px;
+        }
+        
+        .input-field {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .input-field::placeholder {
+            color: var(--medium-gray);
+        }
+        
+        .add-stop-btn {
+            background: transparent;
+            border: none;
+            color: var(--gold);
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .book-button {
+            background-color: var(--gold);
+            color: var(--off-black);
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .book-button:hover {
+            background-color: var(--light-gold);
+        }
+        
+        .book-button:disabled {
+            background-color: var(--medium-gray);
+            cursor: not-allowed;
+        }
+        
+        /* Bottom Navigation */
+        nav {
+            background-color: var(--dark-gray);
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 90;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: var(--medium-gray);
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-item.active {
+            color: var(--gold);
+        }
+        
+        .nav-icon {
+            font-size: 20px;
+        }
+        
+        /* Ride Booking Screen */
+        .ride-booking {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--off-black);
+            z-index: 200;
+            flex-direction: column;
+        }
+        
+        .booking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: var(--dark-gray);
+        }
+        
+        .back-button {
+            color: var(--gold);
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .booking-title {
+            font-weight: 600;
+        }
+        
+        .driver-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            gap: 15px;
+        }
+        
+        .driver-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--gold);
+            border: 3px solid var(--gold);
+        }
+        
+        .driver-name {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .car-details {
+            color: var(--medium-gray);
+        }
+        
+        .license-plate {
+            background-color: var(--gold);
+            color: var(--off-black);
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .tracking-map {
+            flex: 1;
+            background-color: var(--dark-gray);
+            margin: 0 20px 20px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+        
+        #tracking-map {
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+            background-color: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-gray);
+        }
+        
+        .arrival-notification {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            background-color: rgba(212, 175, 55, 0.9);
+            color: var(--off-black);
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .arrival-notification.show {
+            display: block;
+        }
+        
+        .action-buttons {
+            display: flex;
+            padding: 0 20px 20px;
+            gap: 15px;
+        }
+        
+        .action-button {
+            flex: 1;
+            padding: 15px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .call-button {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .cancel-button {
+            background-color: #e74c3c;
+            color: var(--white);
+        }
+        
+        .update-button {
+            background-color: var(--gold);
+            color: var(--off-black);
+        }
+        
+        .ride-details {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 20px 20px;
+        }
+        
+        .detail-header {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--gold);
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .detail-label {
+            color: var(--medium-gray);
+        }
+        
+        .detail-value {
+            font-weight: 500;
+            text-align: right;
+        }
+        
+        .safety-features {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 20px 20px;
+        }
+        
+        .safety-header {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--gold);
+        }
+        
+        .safety-options {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .safety-button {
+            flex: 1;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 14px;
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 20px 0;
+        }
+        
+        .about-card {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--gold);
+        }
+        
+        .about-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+        
+        .about-text {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--light-gray);
+        }
+        
+        .feature-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-list li i {
+            color: var(--gold);
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+        
+        .source-note {
+            font-size: 12px;
+            color: var(--medium-gray);
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* Form Styles */
+        .form-container {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--gold);
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-input {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--white);
+            font-size: 16px;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .form-select {
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--white);
+            font-size: 16px;
+        }
+        
+        .form-select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-label {
+            font-size: 14px;
+        }
+        
+        .checkbox-link {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+        
+        .photo-upload {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            border: 2px dashed var(--gold);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        
+        .photo-icon {
+            font-size: 32px;
+            color: var(--gold);
+        }
+        
+        .photo-text {
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .file-list {
+            margin-top: 10px;
+            width: 100%;
+        }
+        
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .file-remove {
+            color: var(--error-red);
+            cursor: pointer;
+        }
+        
+        .submit-button {
+            background-color: var(--gold);
+            color: var(--off-black);
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: var(--light-gold);
+        }
+        
+        .submit-button:disabled {
+            background-color: var(--medium-gray);
+            cursor: not-allowed;
+        }
+        
+        /* Driver Signup Section */
+        .driver-signup {
+            padding: 20px 0;
+        }
+        
+        .founder-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .founder-title {
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .founder-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .founder-count {
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        
+        .qr-code {
+            background-color: var(--white);
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        
+        .qr-code i {
+            font-size: 100px;
+            color: var(--off-black);
+        }
+        
+        .pricing-calculator {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .calculator-title {
+            font-size: 18px;
+            color: var(--gold);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .calculator-result {
+            background-color: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .result-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+        
+        /* Legal Waiver */
+        .waiver-container {
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .waiver-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--gold);
+            text-align: center;
+        }
+        
+        .waiver-text {
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: var(--light-gray);
+        }
+        
+        /* Additional Stops */
+        .additional-stops {
+            margin-top: 15px;
+        }
+        
+        .stop-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .stop-number {
+            background-color: var(--gold);
+            color: var(--off-black);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .stop-input {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 10px 15px;
+            color: var(--white);
+            font-size: 14px;
+        }
+        
+        .remove-stop {
+            background: transparent;
+            border: none;
+            color: var(--error-red);
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        /* Service Area Map */
+        .service-area-map {
+            height: 200px;
+            background-color: var(--dark-gray);
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://maps.googleapis.com/maps/api/staticmap?center=Melbourne,AU&zoom=11&size=400x200&maptype=roadmap&style=feature:all|element:labels|visibility:off&style=feature:administrative|element:geometry|visibility:off&style=feature:landscape|color:0x1e1e1e&style=feature:poi|visibility:off&style=feature:road|color:0x333333&style=feature:transit|visibility:off&style=feature:water|color:0x121212&key=YOUR_API_KEY');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-zones {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .zone {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.3;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+        }
+        
+        .zone-1 {
+            width: 80px;
+            height: 80px;
+            background-color: #2ecc71; /* Green */
+        }
+        
+        .zone-2 {
+            width: 130px;
+            height: 130px;
+            background-color: #f39c12; /* Orange */
+        }
+        
+        .zone-3 {
+            width: 180px;
+            height: 180px;
+            background-color: #e74c3c; /* Red */
+        }
+        
+        .zone-labels {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+        }
+        
+        .zone-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        
+        .zone-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
+        
+        .zone-1-color {
+            background-color: #2ecc71;
+        }
+        
+        .zone-2-color {
+            background-color: #f39c12;
+        }
+        
+        .zone-3-color {
+            background-color: #e74c3c;
+        }
+        
+        /* Booking Process Steps */
+        .booking-process {
+            margin: 20px 0;
+        }
+        
+        .process-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--dark-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 18px;
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: var(--medium-gray);
+        }
+        
+        /* Rider Signup Form */
+        .rider-signup-form {
+            margin-top: 20px;
+        }
+        
+        /* Licensee Section */
+        .licensee-benefits {
+            margin: 20px 0;
+        }
+        
+        .benefit-card {
+            background-color: var(--dark-gray);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        .benefit-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .benefit-text {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            margin-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            body {
+                max-width: 400px;
+                margin: 0 auto;
+                height: 100vh;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App Screen -->
+    <header>
+        <div class="logo">
+            <div class="logo-img">
+                <div class="logo-wings"></div>
+                <div class="logo-car"></div>
+            </div>
+            <div class="logo-text">Angel Driver</div>
+        </div>
+        <div class="profile-icon" id="profile-btn">JD</div>
+    </header>
+    
+    <main>
+        <!-- Home Section -->
+        
+                        <!-- THE PROVEN PROTOCOL SECTION -->
+        <section style="padding: 80px 20px; background: black; color: white; text-align: center;">
+            <!-- NEW HEADLINE -->
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #d4af37;">The Angel Driver Protocol: A Proven Life-Saver</h2>
+            <!-- NEW SUB-HEADLINE -->
+            <p style="color: #ccc; margin-bottom: 3rem; font-size: 1.2rem; max-width: 800px; margin-left: auto; margin-right: auto;">We didn't invent a new solution. We imported a proven one. For over a decade, our operational model has been silently saving thousands of lives annually overseas. Angel Driver is its Australian evolution.</p>
+
+            <!-- BEFORE THE PROTOCOL -->
+            <div style="background: linear-gradient(to bottom, #2a0c0c, #121212); border: 2px solid #e74c3c; border-radius: 12px; padding: 3rem; margin-bottom: 3rem; text-align: left;">
+                <h3 style="font-size: 2rem; color: #e74c3c; margin-bottom: 2rem; text-align: center;"><i class="fas fa-exclamation-triangle"></i> Before The Protocol</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1.5rem; font-size: 1.1rem;"><strong style="color: #e74c3c;">Rising DUI fatalities</strong> with no innovative solution</li>
+                    <li style="margin-bottom: 1.5rem; font-size: 1.1rem;"><strong style="color: #e74c3c;">Limited options</strong> for those who had been drinking</li>
+                    <li style="margin-bottom: 1.5rem; font-size: 1.1rem;"><strong style="color: #e74c3c;">Repeat offences</strong> and licence suspensions were common</li>
+                    <li style="font-size: 1.1rem;"><strong style="color: #e74c3c;">Preventable tragedies</strong> devastated families</li>
+                </ul>
+            </div>
+
+            <!-- THE GOLDEN RESULT -->
+            <div style="background: #121212; border: 4px solid #d4af37; border-radius: 50%; width: 180px; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 3rem auto; box-shadow: 0 0 30px #d4af37;">
+                <div style="font-size: 3rem; font-weight: 900; color: #d4af37; line-height: 1;">62%</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #f1e5ac; text-transform: uppercase; line-height: 1.2; margin-top: 5px;">REDUCTION<br>IN DUI COLLISIONS</div>
+            </div>
+            <p style="font-weight: 600; color: #d4af37; font-size: 1.2rem; margin-bottom: 3rem;">The Life-Saving Protocol is Implemented</p>
+
+            <!-- AFTER THE PROTOCOL -->
+            <div style="background: linear-gradient(to bottom, #0c2a0c, #0a0a0a); border: 2px solid #2ecc71; border-radius: 12px; padding: 3rem; margin-bottom: 3rem; text-align: left;">
+                <h3 style="font-size: 2rem; color: #2ecc71; margin-bottom: 2rem; text-align: center;"><i class="fas fa-shield-halved"></i> After The Protocol</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #2ecc71; line-height: 1;">1,200+</div>
+                        <div style="font-size: 0.9rem; font-weight: 700;">LIVES SAVED<br>ANNUALLY</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #2ecc71; line-height: 1;">89%</div>
+                        <div style="font-size: 0.9rem; font-weight: 700;">USER<br>SATISFACTION</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #2ecc71; line-height: 1;">¥20B+</div>
+                        <div style="font-size: 0.9rem; font-weight: 700;">SUSTAINABLE<br>INDUSTRY</div>
+                    </div>
+                </div>
+                <p style="font-style: italic; color: #ddd; border-left: 3px solid #d4af37; padding-left: 15px;">A cultural shift occurred. People embraced the responsible choice. Lives were saved. Families were kept whole.</p>
+            </div>
+
+                        <!-- NEW CALL TO ACTION -->
+            <p style="margin-top: 4rem; font-size: 1.3rem; color: #f5f5f5; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Don't trust a promise. Trust a protocol. A system with over <strong style="color: #2ecc71;">1,200 lives saved annually</strong> already to its name. That system is now here. It is called <strong style="color: #d4af37; font-style: normal;">Angel Driver</strong>.
+            </p>
+
+            <!-- CREDIBLE SOURCING - ADD THIS LINE -->
+            <p style="margin-top: 2rem; font-size: 0.7rem; color: #888;">Source: Performance data of the Daikou service model in Japan. National Police Agency, 2022. Daikyo Service Association, 2023.</p>
+        </section>
+            
+        </section>
+        
+        <section id="home-section" class="section active">
+            <div class="about-card">
+                <h2 class="about-title">"You, Your Car. Home, Safely"</h2>
+                <p class="about-text">Angel Driver provides a unique daikou service where two licensed drivers come to your location, drive you and your passengers home safely in your own vehicle.</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-shield-alt"></i> Two professional drivers for enhanced safety</li>
+                    <li><i class="fas fa-car"></i> Your car gets driven home - no parking fines or towing risks</li>
+                    <li><i class="fas fa-users"></i> You and your passengers ride along comfortably</li>
+                    <li><i class="fas fa-house-user"></i> Door-to-door convenience</li>
+                    <li><i class="fas fa-ban"></i> No fines, no impaired driving risks</li>
+                    <li><i class="fas fa-crown"></i> Premium service at affordable rates</li>
+                </ul>
+                
+                <p class="about-text">Perfect for nights out, corporate events, late-night shifts, or when you need to get your car home but can't drive yourself.</p>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">The Real Cost Comparison</h2>
+                
+                <div class="cost-comparison">
+                    <div class="cost-card fine">
+                        <div class="cost-amount">A$619+</div>
+                        <div class="cost-label">Drink Driving Fine</div>
+                        <div class="cost-label" style="margin-top: 10px; font-size: 12px;">+ License suspension<br>+ Potential criminal record<br>+ Increased insurance costs<br>+ Towing fees ($490+)<br>+ Parking fines ($150+)</div>
+                    </div>
+                    <div class="cost-card service">
+                        <div class="cost-amount">A$55+</div>
+                        <div class="cost-label">Angel Driver Service</div>
+                        <div class="cost-label" style="margin-top: 10px; font-size: 12px;">+ Your car gets home safely<br>+ No fines or legal issues<br>+ Professional drivers<br>+ Peace of mind<br>+ 24/7 availability</div>
+                    </div>
+                </div>
+                
+                        <!-- DAIKOU REVOLUTION SECTION - PURE IMPACT -->
+        <section style="padding: 80px 20px; background: black; color: white; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #d4af37;">The Proof: Daikou Revolutionized Japan</h2>
+            <p style="color: #ccc; margin-bottom: 3rem; font-size: 1.2rem;">This is not a theory. It's a result. A blueprint we are bringing to Victoria.</p>
+
+            <!-- BEFORE DAIKOU -->
+            <div style="background: linear-gradient(to bottom, #2a0c0c, #121212); border: 2px solid #e74c3c; border-radius: 12px; padding: 3rem; margin-bottom: 3rem; text-align: left;">
+                <h3 style="font-size: 2rem; color: #e74c3c; margin-bottom: 2rem; text-align: center;"><i class="fas fa-exclamation-triangle"></i> Before Daikou</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 1.5rem; font-size: 1.1rem;"><strong style="color: #e74c3c;">Rising DUI fatalities</strong> with no innovative solution</li>
+                    <li style="margin-bottom: 1.5rem; font-size: 1.1rem;"><strong style="color: #e74c3c;">Limited options</strong> for those who had been drinking</li>
+                    <li style="margin-bottom: 1.5rem; font-size: 1.1rem;"><strong style="color: #e74c3c;">Repeat offences</strong> and licence suspensions were common</li>
+                    <li style="font-size: 1.1rem;"><strong style="color: #e74c3c;">Preventable tragedies</strong> devastated families</li>
+                </ul>
+            </div>
+
+            <!-- THE GOLDEN RESULT -->
+            <div style="background: #121212; border: 4px solid #d4af37; border-radius: 50%; width: 180px; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 3rem auto; box-shadow: 0 0 30px #d4af37;">
+                <div style="font-size: 3rem; font-weight: 900; color: #d4af37; line-height: 1;">62%</div>
+                <div style="font-size: 0.8rem; font-weight: 800; color: #f1e5ac; text-transform: uppercase; line-height: 1.2; margin-top: 5px;">REDUCTION<br>IN DUI COLLISIONS</div>
+            </div>
+            <p style="font-weight: 600; color: #d4af37; font-size: 1.2rem; margin-bottom: 3rem;">The Daikou Model is Introduced</p>
+
+            <!-- AFTER DAIKOU -->
+            <div style="background: linear-gradient(to bottom, #0c2a0c, #0a0a0a); border: 2px solid #2ecc71; border-radius: 12px; padding: 3rem; margin-bottom: 3rem; text-align: left;">
+                <h3 style="font-size: 2rem; color: #2ecc71; margin-bottom: 2rem; text-align: center;"><i class="fas fa-shield-halved"></i> After Daikou</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #2ecc71; line-height: 1;">1,200+</div>
+                        <div style="font-size: 0.9rem; font-weight: 700;">LIVES SAVED<br>ANNUALLY</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #2ecc71; line-height: 1;">89%</div>
+                        <div style="font-size: 0.9rem; font-weight: 700;">USER<br>SATISFACTION</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: 800; color: #2ecc71; line-height: 1;">¥20B+</div>
+                        <div style="font-size: 0.9rem; font-weight: 700;">SUSTAINABLE<br>INDUSTRY</div>
+                    </div>
+                </div>
+                <p style="font-style: italic; color: #ddd; border-left: 3px solid #d4af37; padding-left: 15px;">A cultural shift occurred. People embraced the responsible choice. Lives were saved. Families were kept whole.</p>
+            </div>
+
+            <p style="margin-top: 4rem; font-size: 1.3rem; color: #f5f5f5; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto;">
+                This is not a hopeful idea. <strong style="color: #d4af37; font-style: normal;">This is a mathematical certainty.</strong><br>Angel Driver is deploying this certainty on Victorian roads.
+            </p>
+        </section>
+                
+                                        <!-- VICTORIAN CRISIS SECTION - PURE IMPACT -->
+        <section style="padding: 60px 20px; background: black; color: white; text-align: center;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #d4af37;">The Victorian Road Crisis Is Now</h2>
+            <p style="color: #ccc; margin-bottom: 3rem; font-size: 1.2rem;">2023 was a devastating year. This cannot continue.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto; text-align: center;">
+                <!-- Stat 1 -->
+                <div style="padding: 2rem; background: #1a1a1a; border-radius: 8px;">
+                    <h3 style="font-size: 4rem; color: #e74c3c; margin: 0;">296</h3>
+                    <p style="font-weight: bold;">Lives lost on Victorian roads in 2023</p>
+                    <p style="color: #888; font-size: 0.9rem; margin: 0;">Victorian Road Toll 2023</p>
+                </div>
+                <!-- Stat 2 -->
+                <div style="padding: 2rem; background: #1a1a1a; border-radius: 8px;">
+                    <h3 style="font-size: 4rem; color: #e74c3c; margin: 0;">16,800</h3>
+                    <p style="font-weight: bold;">Licence suspensions for drink/drug driving</p>
+                    <p style="color: #888; font-size: 0.9rem; margin: 0;">Victoria Police 2023</p>
+                </div>
+                <!-- Stat 3 -->
+                <div style="padding: 2rem; background: #1a1a1a; border-radius: 8px;">
+                    <h3 style="font-size: 4rem; color: #e74c3c; margin: 0;">100+</h3>
+                    <p style="font-weight: bold;">Lives lost to impaired driving</p>
+                    <p style="color: #888; font-size: 0.9rem; margin: 0;">TAC Analysis 2023</p>
+                </div>
+                <!-- Stat 4 -->
+                <div style="padding: 2rem; background: #1a1a1a; border-radius: 8px;">
+                    <h3 style="font-size: 4rem; color: #e74c3c; margin: 0;">5,500+</h3>
+                    <p style="font-weight: bold;">People seriously injured annually</p>
+                    <p style="color: #888; font-size: 0.9rem; margin: 0;">Transport Accident Commission</p>
+                </div>
+            </div>
+
+            <p style="margin-top: 4rem; font-size: 1.3rem; color: #f5f5f5; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Behind every number is a family destroyed. A future stolen. <strong style="color: #d4af37; font-style: normal;">Angel Driver exists to end this.</strong>
+            </p>
+        </section>
+
+
+
+                                                <!-- Victoria Road Trauma Data Section -->
+                <div class="local-stats">
+                    <h3>The Victorian Road Crisis Is Now</h3>
+                    <p class="section-subtitle">2023 was a devastating year. This cannot continue.</p>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="296">296</div>
+                            <div class="stat-label">Lives lost on Victorian roads in 2023</div>
+                            <div class="stat-source">Victorian Road Toll 2023</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="100">100</div>
+                            <div class="stat-label">+ Lives lost to impaired driving</div>
+                            <div class="stat-source">TAC Analysis 2023</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="16800">16800</div>
+                            <div class="stat-label">Licence suspensions for drink/drug driving</div>
+                            <div class="stat-source">Victoria Police 2023</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" data-target="5500">5500</div>
+                            <div class="stat-label">People seriously injured annually</div>
+                            <div class="stat-source">Transport Accident Commission</div>
+                        </div>
+                    </div>
+                    
+                    
+                    <p class="stat-cta">Behind every number is a family destroyed. A future stolen. <strong>Angel Driver exists to end this.</strong></p>
+                </div>
+            </div>
+        </section>
+                
+                <p class="source-note">Sources: TAC Victoria 2023, Victoria Police 2022, VicRoads 2023</p>
+                
+                <p class="about-text">With Angel Driver, you protect your license, avoid massive fines, and most importantly, keep yourself and others safe.</p>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Who Benefits from Angel Driver?</h2>
+                
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number"><i class="fas fa-moon"></i></div>
+                        <div class="stat-label">Late Night Shift Workers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><i class="fas fa-glass-cheers"></i></div>
+                        <div class="stat-label">Social Events & Parties</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><i class="fas fa-briefcase"></i></div>
+                        <div class="stat-label">Corporate Functions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><i class="fas fa-music"></i></div>
+                        <div class="stat-label">Concerts & Festivals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><i class="fas fa-pills"></i></div>
+                        <div class="stat-label">Medication Concerns</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number"><i class="fas fa-tired"></i></div>
+                        <div class="stat-label">Fatigue & Drowsiness</div>
+                    </div>
+                </div>
+                
+                <p class="about-text">Corporate clients benefit from reduced liability, enhanced duty of care, and protection against reputational damage from employees driving impaired after company events.</p>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Founder Angel Program</h2>
+                <p class="about-text">Be among the first 111 passengers or drivers to join Angel Driver and receive exclusive Founder Angel benefits:</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-gem"></i> Glowing Limited Edition Founder Angel Badge</li>
+                    <li><i class="fas fa-percentage"></i> Access to Founder Angel Referral Commissions</li>
+                    <li><i class="fas fa-crown"></i> Priority booking during high-demand periods</li>
+                    <li><i class="fas fa-gift"></i> Special Founder-only promotions and discounts</li>
+                    <li><i class="fas fa-star"></i> Lifetime Founder status with permanent benefits</li>
+                    <li><i class="fas fa-map-marked-alt"></i> Exclusive licensee area opportunities (20% discount)</li>
+                </ul>
+                
+                <div class="founder-badge">
+                    <div class="angel-wings">
+                        <div class="wing wing-left"></div>
+                        <div class="wing wing-right"></div>
+                        <div class="badge-center">111</div>
+                    </div>
+                    <div class="founder-badge-text">Limited to first 111 members</div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="#" id="become-founder-link" style="color: var(--gold); text-decoration: underline; font-weight: 600;">Become a Founder Angel Driver</a>
+                </div>
+            </div>
+            
+            <div class="about-card rider-signup-form">
+                <h2 class="about-title">Join as a Rider</h2>
+                <p class="about-text">Sign up now to be among the first to use Angel Driver service:</p>
+                
+                <form action="https://formspree.io/f/your-form-id-here" method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Are you interested in Founder Angel status?</label>
+                        <select class="form-select" name="founder-interest">
+                            <option value="yes">Yes, tell me more</option>
+                            <option value="no">Not at this time</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Join Waitlist</button>
+                </form>
+            </div>
+            
+            <div class="booking-panel">
+                <button class="book-button" id="book-ride">Pre-Book Angel Driver</button>
+            </div>
+        </section>
+        
+        <!-- Booking Form Section -->
+        <section id="booking-section" class="section">
+            <div class="service-notice">
+                <div class="notice-title">Soft Launch Notice</div>
+                <div class="notice-text">During our soft launch, service is limited to pre-bookings within 30km of Melbourne CBD. Standard service only.</div>
+                <div class="founder-badge">
+                    <div class="angel-wings">
+                        <div class="wing wing-left"></div>
+                        <div class="wing wing-right"></div>
+                        <div class="badge-center">111</div>
+                    </div>
+                    <div class="founder-badge-text">Founder Angel Status Available</div>
+                </div>
+            </div>
+            
+            <div class="form-container">
+                <h2 class="form-title">Pre-Book Your Angel Driver</h2>
+                
+                <div class="service-area-map">
+                    <div class="service-zones">
+                        <div class="zone zone-1"></div>
+                        <div class="zone zone-2"></div>
+                        <div class="zone zone-3"></div>
+                    </div>
+                    <div class="zone-labels">
+                        <div class="zone-label">
+                            <div class="zone-color zone-1-color"></div>
+                            <span>15km: $66</span>
+                        </div>
+                        <div class="zone-label">
+                            <div class="zone-color zone-2-color"></div>
+                            <span>20km: $77</span>
+                        </div>
+                        <div class="zone-label">
+                            <div class="zone-color zone-3-color"></div>
+                            <span>30km: $88</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="location-inputs">
+                    <div class="input-group">
+                        <div class="input-icon"><i class="fas fa-circle"></i></div>
+                        <input type="text" class="input-field" placeholder="Current location" id="current-location-input" value="Finding your location...">
+                    </div>
+                    <div class="input-group">
+                        <div class="input-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <input type="text" class="input-field" placeholder="Destination address" id="destination-input">
+                        <button class="add-stop-btn" id="add-stop-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    
+                    <div class="additional-stops" id="additional-stops-container">
+                        <!-- Additional stops will be added here dynamically -->
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Pickup Time (Minimum 2 hours from now)</label>
+                    <input type="datetime-local" class="form-input" id="pickup-time" min="">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Number of Passengers</label>
+                    <select class="form-select" id="passenger-count">
+                        <option value="1">1 Passenger</option>
+                        <option value="2">2 Passengers</option>
+                        <option value="3">3 Passengers</option>
+                        <option value="4">4 Passengers</option>
+                        <option value="5">5+ Passengers (surcharge applies)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Vehicle Make & Model</label>
+                    <input type="text" class="form-input" placeholder="e.g., Toyota Camry">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Vehicle Color</label>
+                    <input type="text" class="form-input" placeholder="e.g., Blue">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">License Plate Number</label>
+                    <input type="text" class="form-input" placeholder="e.g., ABC123">
+                </div>
+                
+                <div class="photo-upload" id="vehicle-photo-upload">
+                    <div class="photo-icon"><i class="fas fa-camera"></i></div>
+                    <div class="photo-text">Tap to upload photos of your vehicle</div>
+                    <input type="file" class="file-input" id="vehicle-photo-input" accept="image/*" multiple>
+                </div>
+                
+                <div class="file-list" id="vehicle-photo-list">
+                    <!-- Uploaded files will appear here -->
+                </div>
+                
+                <div class="booking-process">
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-search"></i></div>
+                        <div class="step-text">
+                            <div class="step-title">Matching Available Angels</div>
+                            <div class="step-description">Finding the best driver pair for your route</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-handshake"></i></div>
+                        <div class="step-text">
+                            <div class="step-title">Angel Pair Matched</div>
+                            <div class="step-description">Drivers confirmed and notified</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-map-marked-alt"></i></div>
+                        <div class="step-text">
+                            <div class="step-title">Coordinating Meeting Point</div>
+                            <div class="step-description">Drivers planning their route to you</div>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-icon"><i class="fas fa-car-side"></i></div>
+                        <div class="step-text">
+                            <div class="step-title">Angels On The Way</div>
+                            <div class="step-description">Real-time tracking activated</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="waiver-container">
+                    <div class="waiver-title">Service Agreement & Legal Waiver</div>
+                    <div class="waiver-text">
+                        <p><strong>SOFT LAUNCH ACKNOWLEDGEMENT:</strong> I understand that Angel Driver is in soft launch phase and service availability may be limited. I acknowledge that Angel Driver is a coordination platform only, not a transportation provider.</p>
+                        
+                        <p><strong>REQUEST NOT GUARANTEE:</strong> I understand that submitting this form is a request for service, not a guaranteed booking. Service is only confirmed when I receive a confirmation notification that Angel Drivers have been assigned to my request.</p>
+                        
+                        <p><strong>INDEMNIFICATION:</strong> I hereby release, indemnify, and hold harmless Angel Driver, its affiliates, officers, agents, and employees from any claim, liability, or demand related to my use of this service, including but not limited to vehicle damage, personal injury, theft, or accidents, regardless of cause.</p>
+                        
+                        <p><strong>INSURANCE RESPONSIBILITY:</strong> I confirm that my vehicle is properly insured, registered, and in roadworthy condition. I understand that any incidents during transportation are between me and the drivers directly, and will be handled through our respective insurance policies.</p>
+                        
+                        <p><strong>DRIVER RELATIONSHIP:</strong> I acknowledge that drivers are independent subcontractors, not employees of Angel Driver. Angel Driver assumes no liability for driver actions, vehicle condition, or any incidents during service.</p>
+                        
+                        <p><strong>DATA PRIVACY:</strong> I consent to my data being collected and stored with 256-bit AES encryption for service coordination purposes only. Angel Driver will not share my data with third parties without my consent, except as required by law.</p>
+                        
+                        <p><strong>CANCELLATION POLICY:</strong> I understand that cancellations within 1 hour of scheduled pickup may incur a fee. Drivers may cancel after 5 minutes of no-show with applicable fees.</p>
+                    </div>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agree-waiver">
+                    <label for="agree-waiver" class="checkbox-label">I have read and agree to the <a href="#" class="checkbox-link">Terms of Service</a>, <a href="#" class="checkbox-link">Privacy Policy</a>, and full liability waiver above</label>
+                </div>
+                
+                <button class="submit-button" id="confirm-booking" disabled>Request Angel Drivers</button>
+            </div>
+        </section>
+        
+        <!-- Driver Signup Section -->
+        <section id="driver-section" class="section">
+            <div class="driver-signup">
+                <div class="founder-card">
+                    <div class="founder-badge">
+                        <div class="angel-wings">
+                            <div class="wing wing-left"></div>
+                            <div class="wing wing-right"></div>
+                            <div class="badge-center">111</div>
+                        </div>
+                        <div class="founder-badge-text">FOUNDER ANGEL PROGRAM</div>
+                    </div>
+                    <h2 class="founder-title">Become a Founding Driver</h2>
+                    <p class="founder-text">Join our exclusive community of first 111 drivers and enjoy special benefits available only to our founding members.</p>
+                    <div class="founder-count">Limited to only 111 founding drivers</div>
+                    
+                    <div class="qr-code">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <p class="founder-text">Scan QR code to apply or visit angeldriver.com/founders</p>
+                    
+                    <p style="font-size: 10px; margin-top: 20px; color: #888;">
+                        By signing up, you acknowledge that you will be an independent subcontractor, not an employee of Angel Driver. You are responsible for your own insurance, taxes, and compliance with all applicable laws and regulations.
+                    </p>
+                </div>
+                
+                <div class="about-card">
+                    <h2 class="about-title">Why Drive With Angel Driver?</h2>
+                    <p class="about-text">As an Angel Driver, you'll enjoy benefits that other ride-share services simply can't match:</p>
+                    
+                    <ul class="feature-list">
+                        <li><i class="fas fa-user-friends"></i> Always work with a partner - never alone</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Higher average pay than other services</li>
+                        <li><i class="fas fa-shield-alt"></i> Enhanced safety with two drivers</li>
+                        <li><i class="fas fa-gem"></i> Exclusive founding driver status</li>
+                        <li><i class="fas fa-chart-line"></i> Priority access to premium rides</li>
+                        <li><i class="fas fa-bell-slash"></i> No notification pings - pre-scheduled rides only</li>
+                        <li><i class="fas fa-route"></i> Longer trips, fewer rides, better earnings</li>
+                    </ul>
+                </div>
+                
+                <div class="pricing-calculator">
+                    <h3 class="calculator-title">Earnings Comparison</h3>
+                    <div class="form-group">
+                        <label class="form-label">Number of Rides Per Week</label>
+                        <input type="range" class="form-input" min="5" max="50" value="20" id="rides-slider">
+                        <div style="text-align: center; margin-top: 5px;" id="rides-value">20 rides</div>
+                    </div>
+                    
+                    <div class="calculator-result">
+                        <div class="result-amount" id="uber-earnings">A$1,000</div>
+                        <div class="result-label">Estimated Uber Weekly Earnings</div>
+                    </div>
+                    
+                    <div class="calculator-result">
+                        <div class="result-amount" id="angel-earnings">A$1,250</div>
+                        <div class="result-label">Estimated Angel Driver Weekly Earnings</div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 15px;">
+                        <span style="color: var(--gold); font-weight: 600;">25% Higher Earnings with Angel Driver</span>
+                    </div>
+                </div>
+                
+                <div class="about-card">
+                    <h2 class="about-title">Requirements</h2>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-id-card"></i> Valid Victorian Driver's License</li>
+                        <li><i class="fas fa-shield-alt"></i> CPVV Certificate</li>
+                        <li><i class="fas fa-car"></i> Comprehensive Insurance</li>
+                        <li><i class="fas fa-clipboard-check"></i> Clean Police Check</li>
+                        <li><i class="fas fa-star"></i> 4.5+ Star Rating (if previous ride-share)</li>
+                        <li><i class="fas fa-file-certificate"></i> Current Roadworthy Certificate</li>
+                    </ul>
+                </div>
+                
+                <form action="https://formspree.io/f/your-form-id-here" method="POST" class="form-container" id="driver-application-form">
+                    <h2 class="form-title">Driver Application Form</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-input" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Driver's License Number</label>
+                        <input type="text" class="form-input" name="license" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">CPVV Certificate</label>
+                        <div class="photo-upload" id="cpvv-upload">
+                            <div class="photo-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="photo-text">Upload CPVV Certificate</div>
+                            <input type="file" class="file-input" id="cpvv-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                        <div class="file-list" id="cpvv-file-list"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Police Check Certificate</label>
+                        <div class="photo-upload" id="police-check-upload">
+                            <div class="photo-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="photo-text">Upload Police Check</div>
+                            <input type="file" class="file-input" id="police-check-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                        <div class="file-list" id="police-check-file-list"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Comprehensive Insurance Certificate</label>
+                        <div class="photo-upload" id="insurance-upload">
+                            <div class="photo-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="photo-text">Upload Insurance Certificate</div>
+                            <input type="file" class="file-input" id="insurance-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                        <div class="file-list" id="insurance-file-list"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Roadworthy Certificate</label>
+                        <div class="photo-upload" id="roadworthy-upload">
+                            <div class="photo-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="photo-text">Upload Roadworthy Certificate</div>
+                            <input type="file" class="file-input" id="roadworthy-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                        <div class="file-list" id="roadworthy-file-list"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Proof of 4.5+ Star Rating (with current date visible)</label>
+                        <div class="photo-upload" id="rating-upload">
+                            <div class="photo-icon"><i class="fas fa-star"></i></div>
+                            <div class="photo-text">Upload Rating Proof</div>
+                            <input type="file" class="file-input" id="rating-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                        </div>
+                        <div class="file-list" id="rating-file-list"></div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="driver-agreement" required>
+                        <label for="driver-agreement" class="checkbox-label">I agree to the <a href="#" class="checkbox-link">Terms of Service</a> and understand I am applying as an independent subcontractor</label>
+                    </div>
+                    
+                    <button type="submit" class="submit-button" id="driver-submit-button" disabled>Submit Application</button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Licensee Section -->
+        <section id="licensee-section" class="section">
+            <div class="about-card">
+                <h2 class="about-title">Exclusive Licensee Opportunities</h2>
+                <p class="about-text">Angel Driver is offering exclusive licensee rights to operate in specific geographic areas. As a licensee, you'll have the right to operate Angel Driver services in your designated territory with our support and branding.</p>
+                
+                <div class="founder-badge">
+                    <div class="angel-wings">
+                        <div class="wing wing-left"></div>
+                        <div class="wing wing-right"></div>
+                        <div class="badge-center">111</div>
+                    </div>
+                    <div class="founder-badge-text">Founder Licensees receive 20% discount</div>
+                </div>
+                
+                <p class="about-text">Founder Angel members (first 111) receive exclusive rights to purchase licensee contracts with a 20% discount and priority selection of premium territories.</p>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Licensee Benefits</h2>
+                
+                <div class="benefit-card">
+                    <div class="benefit-title">Exclusive Territory Rights</div>
+                    <div class="benefit-text">Operate as the exclusive Angel Driver provider in your designated area, with protection from competition within the platform.</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-title">Premium Pricing Areas</div>
+                    <div class="benefit-text">Access to high-demand areas with premium pricing, including entertainment districts, corporate centers, and event venues.</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-title">Priority Job Allocation</div>
+                    <div class="benefit-text">Receive priority for high-value rides and corporate accounts within your licensed territory.</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-title">Marketing Support</div>
+                    <div class="benefit-text">Receive marketing materials and support to promote Angel Driver services in your territory.</div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-title">Training & Operations</div>
+                    <div class="benefit-text">Access to Angel Driver's training programs, operational systems, and driver screening processes.</div>
+                </div>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Investment Structure</h2>
+                
+                <div class="stat-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">A$10K+</div>
+                        <div class="stat-label">License Fee</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">A$8K+</div>
+                        <div class="stat-label">Founder License Fee</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3-5 Years</div>
+                        <div class="stat-label">Term Length</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15-25%</div>
+                        <div class="stat-label">Revenue Share</div>
+                    </div>
+                </div>
+                
+                <p class="about-text">License fees vary based on territory potential, population density, and nightlife activity. Founder Angels receive a 20% discount on license fees.</p>
+            </div>
+            
+            <div class="form-container contact-form">
+                <h2 class="form-title">Licensee Inquiry</h2>
+                
+                <form action="https://formspree.io/f/your-form-id-here" method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Company</label>
+                        <input type="text" class="form-input" name="company">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Inquiry Type</label>
+                        <select class="form-select" name="inquiry-type" required>
+                            <option value="">Select inquiry type</option>
+                            <option value="media">Media Inquiry</option>
+                            <option value="driver-partnership">Driver Partnership Inquiry</option>
+                            <option value="rider-passenger">Rider/Passenger Inquiry</option>
+                            <option value="licensee">Licensee Inquiry</option>
+                            <option value="corporate">Corporate Account Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Areas of Interest</label>
+                        <input type="text" class="form-input" name="areas" placeholder="e.g., South Yarra, CBD, St Kilda">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" name="message" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Submit Inquiry</button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about-section" class="section">
+            <div class="about-card">
+                <h2 class="about-title">Our Mission</h2>
+                <p class="about-text">Angel Driver was created to provide a safe alternative for those who cannot drive themselves home, reducing drink-driving incidents and keeping Victoria's roads safer.</p>
+                
+                <p class="about-text">We believe that everyone should be able to enjoy social events responsibly without worrying about how they'll get themselves and their vehicle home safely.</p>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Service Area</h2>
+                <p class="about-text">During our soft launch, we're focusing on Melbourne CBD and surrounding suburbs within a 30km radius. We'll gradually expand our service area based on demand.</p>
+                
+                <div class="service-area-map">
+                    <div class="service-zones">
+                        <div class="zone zone-1"></div>
+                        <div class="zone zone-2"></div>
+                        <div class="zone zone-3"></div>
+                    </div>
+                    <div class="zone-labels">
+                        <div class="zone-label">
+                            <div class="zone-color zone-1-color"></div>
+                            <span>15km: $66</span>
+                        </div>
+                        <div class="zone-label">
+                            <div class="zone-color zone-2-color"></div>
+                            <span>20km: $77</span>
+                        </div>
+                        <div class="zone-label">
+                            <div class="zone-color zone-3-color"></div>
+                            <span>30km: $88</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Privacy & Data Security</h2>
+                <p class="about-text">At Angel Driver, we take your privacy seriously:</p>
+                
+                <ul class="feature-list">
+                    <li><i class="fas fa-lock"></i> All data encrypted with 256-bit AES encryption</li>
+                    <li><i class="fas fa-shield-alt"></i> Data used solely for service coordination</li>
+                    <li><i class="fas fa-ban"></i> No selling of personal information to third parties</li>
+                    <li><i class="fas fa-user-clock"></i> Data retention limited to operational requirements</li>
+                    <li><i class="fas fa-eye-slash"></i> Anonymous ride matching where possible</li>
+                </ul>
+                
+                <p class="about-text">For full details, please read our <a href="#" style="color: var(--gold);">Privacy Policy</a>.</p>
+            </div>
+            
+            <div class="about-card">
+                <h2 class="about-title">Legal Information</h2>
+                <p class="about-text">Angel Driver operates as a coordination platform connecting vehicle owners with licensed drivers. We are not a transportation provider and do not employ drivers directly.</p>
+                
+                <p class="about-text">All drivers are independent subcontractors responsible for their own insurance, licensing, and compliance with applicable laws and regulations.</p>
+                
+                <p class="about-text">By using our service, you agree to our <a href="#" style="color: var(--gold);">Terms of Service</a> and acknowledge that Angel Driver is not liable for incidents during transportation.</p>
+            </div>
+            
+            <div class="form-container contact-form">
+                <h2 class="form-title">Contact Us</h2>
+                
+                <form action="https://formspree.io/f/your-form-id-here" method="POST">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Inquiry Type</label>
+                        <select class="form-select" name="inquiry-type" required>
+                            <option value="">Select inquiry type</option>
+                            <option value="media">Media Inquiry</option>
+                            <option value="driver-partnership">Driver Partnership Inquiry</option>
+                            <option value="rider-passenger">Rider/Passenger Inquiry</option>
+                            <option value="licensee">Licensee Inquiry</option>
+                            <option value="corporate">Corporate Account Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" name="message" rows="4" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <nav>
+        <div class="nav-item active" data-section="home-section">
+            <div class="nav-icon"><i class="fas fa-home"></i></div>
+            <div>Home</div>
+        </div>
+        <div class="nav-item" data-section="booking-section">
+            <div class="nav-icon"><i class="fas fa-calendar-check"></i></div>
+            <div>Pre-Book</div>
+        </div>
+        <div class="nav-item" data-section="driver-section">
+            <div class="nav-icon"><i class="fas fa-id-card"></i></div>
+            <div>Drive</div>
+        </div>
+        <div class="nav-item" data-section="licensee-section">
+            <div class="nav-icon"><i class="fas fa-map-marked-alt"></i></div>
+            <div>Licensee</div>
+        </div>
+        <div class="nav-item" data-section="about-section">
+            <div class="nav-icon"><i class="fas fa-info-circle"></i></div>
+            <div>About</div>
+        </div>
+    </nav>
+    
+    <!-- Ride Booking Screen -->
+    <div class="ride-booking" id="booking-screen">
+        <div class="booking-header">
+            <div class="back-button" id="back-button"><i class="fas fa-arrow-left"></i></div>
+            <div class="booking-title">Your Angels are on the way</div>
+            <div style="width: 24px;"></div>
+        </div>
+        
+        <div class="driver-info">
+            <div class="driver-photo"><i class="fas fa-user"></i></div>
+            <div class="driver-name">Michael Chen & Sarah Johnson</div>
+            <div class="car-details">Your vehicle: Toyota Camry • Blue</div>
+            <div class="license-plate">VIC 1AB 234</div>
+        </div>
+        
+        <div class="tracking-map">
+            <div class="arrival-notification" id="arrival-notification">
+                Your Angel Drivers are arriving in approximately 2 minutes
+            </div>
+            <div id="tracking-map">Tracking map will be displayed here</div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="action-button call-button">
+                <i class="fas fa-phone"></i> Call Drivers
+            </button>
+            <button class="action-button update-button">
+                <i class="fas fa-plus"></i> Add Stop
+            </button>
+            <button class="action-button cancel-button">
+                <i class="fas fa-times"></i> Cancel Ride
+            </button>
+        </div>
+        
+        <div class="ride-details">
+            <div class="detail-header">Ride Details</div>
+            <div class="detail-item">
+                <span class="detail-label">Pickup:</span>
+                <span class="detail-value">123 Main Street, Melbourne</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Dropoff:</span>
+                <span class="detail-value">456 Collins Street, Melbourne</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Estimated Fare:</span>
+                <span class="detail-value">$18.50</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-label">Ride Type:</span>
+                <span class="detail-value">Angel Assist (Accessibility)</span>
+            </div>
+        </div>
+        
+        <div class="safety-features">
+            <div class="safety-header">Safety Features</div>
+            <div class="safety-options">
+                <button class="safety-button">
+                    <i class="fas fa-shield-alt"></i> Share Trip Status
+                </button>
+                <button class="safety-button">
+                    <i class="fas fa-exclamation-circle"></i> Emergency Assist
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum pickup time to 2 hours from now
+            const pickupTimeInput = document.getElementById('pickup-time');
+            if (pickupTimeInput) {
+                const now = new Date();
+                now.setHours(now.getHours() + 2);
+                const minDateTime = now.toISOString().slice(0, 16);
+                pickupTimeInput.min = minDateTime;
+            }
+            
+            // Get all navigation items
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            // Add click event listeners to each nav item
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Get the target section from data attribute
+                    const targetSection = this.getAttribute('data-section');
+                    
+                    // Update active nav item
+                    navItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Show the target section, hide others
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById(targetSection).classList.add('active');
+                });
+            });
+            
+            // Handle book ride button click
+            const bookRideButton = document.getElementById('book-ride');
+            if (bookRideButton) {
+                bookRideButton.addEventListener('click', function() {
+                    // Show booking section
+                    navItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                        if (navItem.getAttribute('data-section') === 'booking-section') {
+                            navItem.classList.add('active');
+                        }
+                    });
+                    
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById('booking-section').classList.add('active');
+                });
+            }
+            
+            // Handle back button in booking screen
+            const backButton = document.getElementById('back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function() {
+                    document.getElementById('booking-screen').style.display = 'none';
+                });
+            }
+            
+            // Handle confirm booking button
+            const confirmBookingButton = document.getElementById('confirm-booking');
+            const agreeWaiverCheckbox = document.getElementById('agree-waiver');
+            
+            if (confirmBookingButton && agreeWaiverCheckbox) {
+                // Enable/disable confirm button based on checkbox
+                agreeWaiverCheckbox.addEventListener('change', function() {
+                    confirmBookingButton.disabled = !this.checked;
+                });
+                
+                // Show booking screen when confirmed
+                confirmBookingButton.addEventListener('click', function() {
+                    document.getElementById('booking-screen').style.display = 'flex';
+                    
+                    // Simulate booking process steps
+                    simulateBookingProcess();
+                });
+            }
+            
+            // Handle add stop button
+            const addStopBtn = document.getElementById('add-stop-btn');
+            const additionalStopsContainer = document.getElementById('additional-stops-container');
+            let stopCount = 0;
+            
+            if (addStopBtn && additionalStopsContainer) {
+                addStopBtn.addEventListener('click', function() {
+                    if (stopCount < 5) {
+                        stopCount++;
+                        const stopItem = document.createElement('div');
+                        stopItem.className = 'stop-item';
+                        stopItem.innerHTML = `
+                            <div class="stop-number">${stopCount}</div>
+                            <input type="text" class="stop-input" placeholder="Additional stop address">
+                            <button class="remove-stop"><i class="fas fa-times"></i></button>
+                        `;
+                        additionalStopsContainer.appendChild(stopItem);
+                        
+                        // Add event listener to remove button
+                        const removeBtn = stopItem.querySelector('.remove-stop');
+                        removeBtn.addEventListener('click', function() {
+                            additionalStopsContainer.removeChild(stopItem);
+                            stopCount--;
+                            // Renumber remaining stops
+                            const stops = additionalStopsContainer.querySelectorAll('.stop-item');
+                            stops.forEach((stop, index) => {
+                                stop.querySelector('.stop-number').textContent = index + 1;
+                            });
+                            stopCount = stops.length;
+                        });
+                    } else {
+                        alert('Maximum of 5 additional stops allowed');
+                    }
+                });
+            }
+            
+            // Handle file uploads for driver application
+            const fileInputs = {
+                'cpvv-input': 'cpvv-file-list',
+                'police-check-input': 'police-check-file-list',
+                'insurance-input': 'insurance-file-list',
+                'roadworthy-input': 'roadworthy-file-list',
+                'rating-input': 'rating-file-list',
+                'vehicle-photo-input': 'vehicle-photo-list'
+            };
+            
+            for (const [inputId, listId] of Object.entries(fileInputs)) {
+                const input = document.getElementById(inputId);
+                const list = document.getElementById(listId);
+                
+                if (input && list) {
+                    input.addEventListener('change', function() {
+                        if (this.files.length > 0) {
+                            list.innerHTML = '';
+                            for (let i = 0; i < this.files.length; i++) {
+                                const fileItem = document.createElement('div');
+                                fileItem.className = 'file-item';
+                                fileItem.innerHTML = `
+                                    <span>${this.files[i].name}</span>
+                                    <span class="file-remove" data-file-index="${i}"><i class="fas fa-times"></i></span>
+                                `;
+                                list.appendChild(fileItem);
+                            }
+                            
+                            // Enable/disable driver submit button based on required files
+                            if (inputId !== 'vehicle-photo-input') {
+                                checkDriverFiles();
+                            }
+                        }
+                    });
+                }
+            }
+            
+            // Handle file removal
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('file-remove') || e.target.parentElement.classList.contains('file-remove')) {
+                    const fileRemove = e.target.classList.contains('file-remove') ? e.target : e.target.parentElement;
+                    const fileIndex = fileRemove.getAttribute('data-file-index');
+                    const fileItem = fileRemove.closest('.file-item');
+                    
+                    // Find which input this belongs to
+                    for (const [inputId, listId] of Object.entries(fileInputs)) {
+                        const list = document.getElementById(listId);
+                        if (list && list.contains(fileItem)) {
+                            const input = document.getElementById(inputId);
+                            if (input) {
+                                // Create a new DataTransfer object to remove the file
+                                const dt = new DataTransfer();
+                                for (let i = 0; i < input.files.length; i++) {
+                                    if (i !== parseInt(fileIndex)) {
+                                        dt.items.add(input.files[i]);
+                                    }
+                                }
+                                input.files = dt.files;
+                                
+                                // Update UI
+                                fileItem.remove();
+                                
+                                // Enable/disable driver submit button based on required files
+                                if (inputId !== 'vehicle-photo-input') {
+                                    checkDriverFiles();
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            });
+            
+            // Check if all required driver files are uploaded
+            function checkDriverFiles() {
+                const driverSubmitButton = document.getElementById('driver-submit-button');
+                if (!driverSubmitButton) return;
+                
+                const requiredFiles = [
+                    'cpvv-input',
+                    'police-check-input',
+                    'insurance-input',
+                    'roadworthy-input',
+                    'rating-input'
+                ];
+                
+                let allFilesUploaded = true;
+                for (const fileId of requiredFiles) {
+                    const input = document.getElementById(fileId);
+                    if (input && input.files.length === 0) {
+                        allFilesUploaded = false;
+                        break;
+                    }
+                }
+                
+                driverSubmitButton.disabled = !allFilesUploaded;
+            }
+            
+            // Handle rides slider in driver section
+            const ridesSlider = document.getElementById('rides-slider');
+            const ridesValue = document.getElementById('rides-value');
+            const uberEarnings = document.getElementById('uber-earnings');
+            const angelEarnings = document.getElementById('angel-earnings');
+            
+            if (ridesSlider && ridesValue && uberEarnings && angelEarnings) {
+                ridesSlider.addEventListener('input', function() {
+                    const rides = parseInt(this.value);
+                    ridesValue.textContent = `${rides} rides`;
+                    
+                    // Uber calculation: $50 per ride average
+                    const uberEarningsValue = rides * 50;
+                    uberEarnings.textContent = `A$${uberEarningsValue.toFixed(0)}`;
+                    
+                    // Angel Driver calculation: $62.50 per ride average (25% more)
+                    const angelEarningsValue = rides * 62.50;
+                    angelEarnings.textContent = `A$${angelEarningsValue.toFixed(0)}`;
+                });
+            }
+            
+            // Handle become founder link
+            const becomeFounderLink = document.getElementById('become-founder-link');
+            if (becomeFounderLink) {
+                becomeFounderLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Show driver section
+                    navItems.forEach(navItem => {
+                        navItem.classList.remove('active');
+                        if (navItem.getAttribute('data-section') === 'driver-section') {
+                            navItem.classList.add('active');
+                        }
+                    });
+                    
+                    const sections = document.querySelectorAll('.section');
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    document.getElementById('driver-section').classList.add('active');
+                });
+            }
+            
+            // Simulate booking process
+            function simulateBookingProcess() {
+                const steps = document.querySelectorAll('.process-step');
+                let step = 0;
+                
+                const processInterval = setInterval(() => {
+                    if (step < steps.length) {
+                        steps[step].style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                        steps[step].style.border = '1px solid var(--gold)';
+                        step++;
+                    } else {
+                        clearInterval(processInterval);
+                    }
+                }, 1500);
+            }
+            
+            // Initialize map placeholders
+            document.getElementById('map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;"><i class="fas fa-map-marked-alt" style="font-size:48px;margin-right:10px;"></i><span>Map Preview</span></div>';
+            document.getElementById('tracking-map').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;"><i class="fas fa-map-marked-alt" style="font-size:48px;margin-right:10px;"></i><span>Tracking Map</span></div>';
+            
+            // Handle arrival notification
+            setTimeout(function() {
+                const arrivalNotification = document.getElementById('arrival-notification');
+                if (arrivalNotification) {
+                    arrivalNotification.classList.add('show');
+                }
+            }, 3000);
+            
+            // Button functionality for booking screen
+            const callButton = document.querySelector('.call-button');
+            if (callButton) {
+                callButton.addEventListener('click', function() {
+                    alert('Calling drivers...');
+                });
+            }
+            
+            const updateButton = document.querySelector('.update-button');
+            if (updateButton) {
+                updateButton.addEventListener('click', function() {
+                    alert('Add stop functionality would go here');
+                });
+            }
+            
+            const cancelButton = document.querySelector('.cancel-button');
+            if (cancelButton) {
+                cancelButton.addEventListener('click', function() {
+                    if(confirm('Are you sure you want to cancel this ride?')) {
+                        alert('Ride cancelled');
+                        document.getElementById('booking-screen').style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
